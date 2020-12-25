@@ -1,24 +1,22 @@
-
+/*dependencies */
 const express=require('express');
 const app=express();
 const http=require('http');
 const mongoose=require('mongoose');
-const routeIndex=require('./routes/blog');
 const bodyParser=require('body-parser');
+/*including files*/
+const routeIndex=require('./routes/blog');
 
 
+/* creating server */
 const server=http.createServer(app);
 
-
+/*middlewares*/
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
 app.use('/', routeIndex);
-app.get('/', (req, res)=>{app.use('/', routeIndex);
-    console.log("blog app project started");
-    res.send("all routes api is here");
-})
 
+/* check - server listening or not*/
 server.listen(3000);
 server.on('listening', onListening);
 server.on('error', onError);
@@ -32,6 +30,7 @@ function onError(){
     console.log("Error happened in server connection");
 }
 
+/* check - mongodb connection set up or not */
 mongoose.connection.on('open', function(err){
     if(err){
         console.log("An error occurred in mongoose connection open");

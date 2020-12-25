@@ -1,3 +1,4 @@
+/* Blog Model - to decide the fields of documents in blogs collection */
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 

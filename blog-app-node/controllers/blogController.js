@@ -1,6 +1,6 @@
 
 const bf=require('./blogFunctions');
-
+/* GET API related function */
 let getAllBlogs=(req, res)=>{
     bf.get_all_blogs(req)
         .then(resolve=>{
@@ -22,6 +22,26 @@ let getBlogById=(req, res)=>{
         })    
 }
 
+let getBlogsByTags=(req, res)=>{
+    bf.get_blogs_by_tags(req)
+        .then(resolve=>{
+            res.send(resolve)
+        })
+        .then(error=>{
+            res.send(error)
+        })
+}
+
+let getBlogsByAnyTagItem=(req, res)=>{
+    bf.get_blogs_by_any_tag_item(req)
+        .then(resolve=>{
+            res.send(resolve)
+        })
+        .then(error=>{
+            res.send(error)
+        })
+}
+/* POST API related function */
 let createNewBlog=(req, res)=>{ 
     bf.create_new_blog(req)
         .then(resolve=>{
@@ -32,7 +52,7 @@ let createNewBlog=(req, res)=>{
         })   
     
 }
-
+/* PUT API related function */
 let editBlog=(req, res)=>{
     bf.edit_blog(req)
         .then(resolve=>{
@@ -43,6 +63,16 @@ let editBlog=(req, res)=>{
         })    
 }
 
+let updateBlogTags=(req, res)=>{
+    bf.update_blog_tags(req)
+        .then(resolve=>{
+            res.send(resolve);
+        })
+        .catch(error=>{
+            res.send(error);
+        })
+}
+/* DELETE API related functions */
 let deleteBlog=(req, res)=>{
     bf.delete_blog(req)
         .then(resolve=>{
@@ -66,9 +96,12 @@ let deleteManyBlogs=(req, res)=>{
 
 module.exports={
     getAllBlogs:getAllBlogs,
+    getBlogsByTags:getBlogsByTags,
+    getBlogsByAnyTagItem:getBlogsByAnyTagItem,
     getBlogById:getBlogById,
     createNewBlog:createNewBlog,
     editBlog:editBlog, 
+    updateBlogTags:updateBlogTags,
     deleteBlog:deleteBlog,
     deleteManyBlogs:deleteManyBlogs
 
